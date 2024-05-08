@@ -1,8 +1,9 @@
-import React from "react";
-import { Button, Cascader, Checkbox, Form, Input, Select } from "antd";
-
+import React, { useEffect } from "react";
+import { Button, Cascader, Checkbox, Form, Input, Select, Upload } from "antd";
+import { toast } from "react-toastify";
 import "../App.css";
-import { uploadCV } from "../services/api";
+import { updateCV, uploadCV } from "../services/api";
+import { useLocation } from "react-router-dom";
 const { SHOW_CHILD } = Cascader;
 
 const options = [
@@ -58,12 +59,26 @@ const tailFormItemLayout = {
     },
   },
 };
-const Register = (value) => {
+const Uploadprofile = (value) => {
+  let { state } = useLocation();
+  console.log(state);
   const [form] = Form.useForm();
-
+  let selectedTech = [];
+  const formData = new FormData();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
-    uploadCV(values);
+    console.log(values);
+    // values.forEach((item, index) => {
+    //   formData.append(`${item}`, values);
+    // });
+    for (const [key, value] of Object.entries(values)) {
+      formData.append(`${key}`, `${value}`); // "a 5", "b 7", "c 9"
+    }
+    console.log("CVFile", CVFile);
+    formData.append("file", CVFile);
+    formData.append("tech", selectedTech);
+
+    state ? updateCV(state.id, formData) : uploadCV(formData);
   };
   const { Option } = Select;
   const prefixSelector = (
@@ -81,12 +96,27 @@ const Register = (value) => {
   );
 
   const onChange = (value) => {
-    console.log(value);
+    console.log("hello", value);
+    selectedTech = value;
   };
 
   const handleChange = () => {
     console.log(`selected: ${value}`);
   };
+  let CVFile = null;
+  const props = {
+    onChange({ file }) {
+      if (file.status !== "uploading") {
+        console.log("file", file);
+        CVFile = file;
+        console.log("🚀 ~ onChange ~ CVFile :", CVFile);
+      }
+    },
+  };
+
+  useEffect(() => {
+    form.setFieldsValue(state);
+  }, []);
 
   return (
     <div className="register-form">
@@ -126,7 +156,6 @@ const Register = (value) => {
         </Form.Item>
 
         <Form.Item
-          name="tech"
           label="Technology"
           rules={[
             {
@@ -154,9 +183,11 @@ const Register = (value) => {
           rules={[{ required: true, message: "Please select an option" }]}
         >
           <Select placeholder="select the level" onChange={handleChange}>
-            <Option value="option1">Beginner</Option>
-            <Option value="option2">Intermediate</Option>
-            <Option value="option3">Advanced</Option>
+            <Option value="beginner" defaultValue={state ? state.level : null}>
+              Beginner
+            </Option>
+            <Option value="intermediate">Intermediate</Option>
+            <Option value="advanced">Advanced</Option>
           </Select>
         </Form.Item>
 
@@ -183,12 +214,7 @@ const Register = (value) => {
             },
           ]}
         >
-          <Input
-            type="number"
-            onChange={(e) => {
-              setExp(e.target.value);
-            }}
-          />
+          <Input type="number" />
         </Form.Item>
 
         <Form.Item
@@ -269,12 +295,9 @@ const Register = (value) => {
         </Form.Item>
 
         <Form.Item label="Upload Cv">
-          <Input
-            type="file"
-            onChange={(e) => {
-              setImage(e.target.value);
-            }}
-          />
+          <Upload {...props}>
+            <Button>Choose file</Button>
+          </Upload>
         </Form.Item>
         <Form.Item
           name="agreement"
@@ -295,11 +318,11 @@ const Register = (value) => {
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Register
+            {state ? "Update" : "Register"}
           </Button>
         </Form.Item>
       </Form>
     </div>
   );
 };
-export default Register;
+export default Uploadprofile;
