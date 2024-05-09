@@ -19,6 +19,8 @@ const Header = () => {
       <div></div>
       <h1 className="text-3xl font-semibold">CV Management System</h1>
 
+      {/* <hr /> */}
+
       <Popover placement="bottom" title={text} content={content}>
         <div className="flex items-center justify-center gap-x-2">
           <p>Log Out</p>
