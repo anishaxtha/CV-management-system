@@ -35,3 +35,9 @@ export const updateCV = async (id, data) => {
   toast.success("Success Updated");
   console.log("🚀 ~ updateCV ~ updatefile:", updatefile);
 };
+
+export const UserList = async () => {
+  const user = await axiosInstance.get("users");
+  // console.log("🚀 ~ UserList ~ user:", user);
+  return user;
+};
