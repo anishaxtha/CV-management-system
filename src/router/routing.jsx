@@ -9,6 +9,9 @@ import Dashboard from "../components/Dashboard";
 import Uploadprofile from "../components/Uploadprofile";
 import ScheduleInterview from "../components/ScheduleInterview";
 import CvList from "../components/CvList";
+import OfferManagement from "../components/OfferManagement";
+import UploadAssessment from "../components/UploadAssessment";
+import EvaluteAssessment from "../components/EvaluteAssessment";
 
 const Routing = () => {
   // let location = useLocation();
@@ -32,7 +35,10 @@ const Routing = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Uploadprofile />} />
             <Route path="/cvlist" element={<CvList />} />
+            <Route path="/offer" element={<OfferManagement />} />
             <Route path="/schedule" element={<ScheduleInterview />} />
+            <Route path="/upload" element={<UploadAssessment />} />
+            <Route path="/evalute" element={<EvaluteAssessment />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
             {/* <Route path="/register" element={<Register />} /> */}
