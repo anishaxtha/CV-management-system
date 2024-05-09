@@ -41,3 +41,9 @@ export const UserList = async () => {
   // console.log("🚀 ~ UserList ~ user:", user);
   return user;
 };
+
+export const AssignTask = async (id) => {
+  const task = await axiosInstance.post(`assign/task/${id}`);
+
+  console.log("🚀 ~ AssignTask ~ task:", task);
+};
