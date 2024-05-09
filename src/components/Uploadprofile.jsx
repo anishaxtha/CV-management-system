@@ -270,11 +270,7 @@ const Uploadprofile = (value) => {
             },
           ]}
         >
-          <Input
-            onChange={(e) => {
-              setRef(e.target.value);
-            }}
-          />
+          <Input />
         </Form.Item>
 
         <Form.Item
