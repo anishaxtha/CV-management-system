@@ -48,31 +48,6 @@ const Sidebar = () => {
             </Menu.Item>
           </Menu>
         </Sider>
-        {/* <Layout
-        style={{
-          marginLeft: 200,
-        }}
-      >
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        />
-        <Content
-          style={{
-            margin: "24px 16px 0",
-            overflow: "initial",
-          }}
-        ></Content>
-        <Footer
-          style={{
-            textAlign: "center",
-          }}
-        >
-          {/* Ant Design ©{new Date().getFullYear()} Created by Ant UED */}
-        {/* </Footer>
-      </Layout> */}
       </Layout>
     </div>
   );
