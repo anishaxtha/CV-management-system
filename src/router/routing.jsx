@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import LoginPage from "../components/LoginPage";
-// import Register from "../components/Register";
 import SignUp from "../components/SignUp";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
@@ -14,9 +13,8 @@ import UploadAssessment from "../components/UploadAssessment";
 import EvaluteAssessment from "../components/EvaluteAssessment";
 
 const Routing = () => {
-  // let location = useLocation();
   const pathname = useLocation().pathname;
-  const ignoredRoutes = ["/login", "/register"];
+  const ignoredRoutes = ["/login", "/signup"];
   return (
     <div>
       <div className={`${ignoredRoutes.includes(pathname) ? "hidden" : ""} `}>
@@ -30,7 +28,9 @@ const Routing = () => {
         >
           <Sidebar />
         </div>
-        <div className="w-3/4">
+        <div
+          className={`${ignoredRoutes.includes(pathname) ? "w-full" : "w-3/4"}`}
+        >
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Uploadprofile />} />
