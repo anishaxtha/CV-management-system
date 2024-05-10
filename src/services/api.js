@@ -47,3 +47,19 @@ export const AssignTask = async (id) => {
 
   console.log("🚀 ~ AssignTask ~ task:", task);
 };
+
+export const Loginpage = async (email, password) => {
+  try {
+    const login = await axiosInstance.post("login", {
+      email: email,
+      password: password,
+    });
+    console.log("🚀 ~ Loginpage ~ login:", login);
+    window.location.href = "/dashboard";
+    // return login, (<Redirect to="/dashboard" />);
+    return login;
+  } catch (error) {
+    console.error("Login failed:", error);
+    throw error;
+  }
+};
