@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Flex, Form, Input } from "antd";
+import cvmanager from "../assets/cvmanager.png";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -23,16 +24,38 @@ const SignUp = () => {
     console.log(res);
   };
 
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 10,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 14,
+      },
+    },
+  };
+
   return (
     <>
-      <div className="signup-form">
+      <div className="w-full h-screen flex items-center justify-center flex-col bg-[#171b5b]">
+        <img src={cvmanager} alt="" className="h-24 w-24" />
+        <h1 className="text-3xl font-semibold text-white mb-4">Signup Form</h1>
+
         <Form
+          {...formItemLayout}
+          style={{ padding: "30px 30px 10px 30px", maxWidth: 600 }}
+          className="bg-white rounded-md"
           name="register"
           initialValues={{
             prefix: "977",
-          }}
-          style={{
-            maxWidth: 600,
           }}
           scrollToFirstError
         >
@@ -106,7 +129,7 @@ const SignUp = () => {
             />
           </Form.Item>
 
-          <Form.Item>
+          <Form.Item className="w-full flex items-center justify-center">
             <Button onClick={doSignup} type="primary" htmlType="submit">
               SignUp
             </Button>
