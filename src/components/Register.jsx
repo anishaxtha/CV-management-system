@@ -1,8 +1,7 @@
-import React from "react";
 import { Button, Cascader, Checkbox, Form, Input, Select } from "antd";
-
 import "../App.css";
 import { uploadCV } from "../services/api";
+
 const { SHOW_CHILD } = Cascader;
 
 const options = [
@@ -30,49 +29,34 @@ const options = [
 
 const formItemLayout = {
   labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
+    xs: { span: 24 },
+    sm: { span: 8 },
   },
   wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
+    xs: { span: 24 },
+    sm: { span: 16 },
   },
 };
+
 const tailFormItemLayout = {
   wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
+    xs: { span: 24, offset: 0 },
+    sm: { span: 16, offset: 8 },
   },
 };
-const Register = (value) => {
+
+const Register = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
     uploadCV(values);
   };
+
   const { Option } = Select;
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 90,
-        }}
-      >
+      <Select style={{ width: 90 }}>
         <Option value="977">+977</Option>
         <Option value="86">+86</Option>
         <Option value="87">+87</Option>
@@ -84,7 +68,7 @@ const Register = (value) => {
     console.log(value);
   };
 
-  const handleChange = () => {
+  const handleChange = (value) => {
     console.log(`selected: ${value}`);
   };
 
@@ -95,57 +79,34 @@ const Register = (value) => {
         form={form}
         name="register"
         onFinish={onFinish}
-        initialValues={{
-          prefix: "977",
-        }}
-        style={{
-          maxWidth: 600,
-        }}
+        initialValues={{ prefix: "977" }}
+        style={{ maxWidth: 600 }}
         scrollToFirstError
       >
         <Form.Item
           name="name"
           label="Name"
           rules={[
-            {
-              type: "name",
-              message: "The input is not valid name!",
-            },
-            {
-              required: true,
-              message: "Please input your name!",
-            },
+            { type: "string", message: "The input is not valid name!" },
+            { required: true, message: "Please input your name!" },
           ]}
         >
-          <Input
-            placeholder="Enter the name "
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
+          <Input placeholder="Enter the name" />
         </Form.Item>
 
         <Form.Item
           name="tech"
           label="Technology"
-          rules={[
-            {
-              required: false,
-              message: "Please input website!",
-            },
-          ]}
+          rules={[{ required: false, message: "Please input website!" }]}
         >
           <Cascader
-            style={{
-              width: "100%",
-            }}
+            style={{ width: "100%" }}
             options={options}
             onChange={onChange}
             multiple
             maxTagCount="responsive"
             showCheckedStrategy={SHOW_CHILD}
           />
-          <br />
         </Form.Item>
 
         <Form.Item
@@ -165,101 +126,53 @@ const Register = (value) => {
           name="salaryexp"
           rules={[{ required: true, message: "Please input your salary!" }]}
         >
-          <Input
-            type="number"
-            onChange={(e) => {
-              setNumber(e.target.value);
-            }}
-          />
+          <Input type="number" />
         </Form.Item>
 
         <Form.Item
           name="exp"
           label="Experience"
-          rules={[
-            {
-              required: true,
-              message: "Experience in years",
-            },
-          ]}
+          rules={[{ required: true, message: "Experience in years" }]}
         >
-          <Input
-            type="number"
-            onChange={(e) => {
-              setExp(e.target.value);
-            }}
-          />
+          <Input type="number" />
         </Form.Item>
 
         <Form.Item
           name="number"
           label="Phone Number"
           rules={[
-            {
-              required: true,
-              message: "Please input your phone number!",
-            },
+            { required: true, message: "Please input your phone number!" },
           ]}
         >
-          <Input
-            addonBefore={prefixSelector}
-            style={{
-              width: "100%",
-            }}
-          />
+          <Input addonBefore={prefixSelector} style={{ width: "100%" }} />
         </Form.Item>
 
         <Form.Item
           name="email"
           label="E-mail"
           rules={[
-            {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
-            },
+            { type: "email", message: "The input is not valid E-mail!" },
+            { required: true, message: "Please input your E-mail!" },
           ]}
         >
-          <Input
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
+          <Input />
         </Form.Item>
 
         <Form.Item
           name="ref"
           label="References"
           rules={[
-            {
-              type: "reference",
-              message: "The input is not valid reference!",
-            },
-            {
-              required: true,
-              message: "Please input your reference!",
-            },
+            { type: "string", message: "The input is not valid reference!" },
+            { required: true, message: "Please input your reference!" },
           ]}
         >
-          <Input
-            onChange={(e) => {
-              setRef(e.target.value);
-            }}
-          />
+          <Input />
         </Form.Item>
 
         <Form.Item
           name="gender"
           label="Gender"
-          rules={[
-            {
-              required: true,
-              message: "Please select gender!",
-            },
-          ]}
+          rules={[{ required: true, message: "Please select gender!" }]}
         >
           <Select placeholder="select your gender">
             <Option value="male">Male</Option>
@@ -269,13 +182,9 @@ const Register = (value) => {
         </Form.Item>
 
         <Form.Item label="Upload Cv">
-          <Input
-            type="file"
-            onChange={(e) => {
-              setImage(e.target.value);
-            }}
-          />
+          <Input type="file" />
         </Form.Item>
+
         <Form.Item
           name="agreement"
           valuePropName="checked"
@@ -293,6 +202,7 @@ const Register = (value) => {
             I have read the <a href="">agreement</a>
           </Checkbox>
         </Form.Item>
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             Register
@@ -302,4 +212,5 @@ const Register = (value) => {
     </div>
   );
 };
+
 export default Register;

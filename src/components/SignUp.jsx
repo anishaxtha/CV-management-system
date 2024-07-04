@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Flex, Form, Input } from "antd";
+import { useState } from "react";
+import { Button, Form, Input } from "antd";
 import cvmanager from "../assets/cvmanager.png";
 
 const SignUp = () => {

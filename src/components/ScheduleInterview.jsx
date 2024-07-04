@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Table } from "antd";
 import { scheduleInterview } from "../services/api";
 const columns = [

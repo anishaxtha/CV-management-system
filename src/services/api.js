@@ -1,5 +1,6 @@
-import axiosInstance from "../../axiosInstance";
 import { toast } from "react-toastify";
+import axiosInstance from "../../axiosInstance";
+// import { toast } from "react-toastify";
 
 export const uploadCV = (data) => {
   const response = axiosInstance.post("store/cv", data, {
