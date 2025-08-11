@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Cascader, Checkbox, Form, Input, Select } from "antd";
 
 import "../App.css";

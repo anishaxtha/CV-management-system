@@ -1,4 +1,3 @@
-import React from "react";
 import { Layout, Menu } from "antd";
 import { MdOutlineFolderShared, MdSpaceDashboard } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
